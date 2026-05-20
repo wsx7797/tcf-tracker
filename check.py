@@ -11,8 +11,8 @@ headers = {
 }
 
 def send_whatsapp(msg):
-    phone = os.getenv("905539851216")
-    apikey = os.getenv("7654424")
+    phone = os.environ["PHONE_NUMBER"]
+    apikey = os.environ["CALLMEBOT_APIKEY"]
 
     text = urllib.parse.quote(msg)
 
