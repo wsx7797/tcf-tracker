@@ -7,8 +7,8 @@ import time
 URL = "https://www.tcf.gov.tr/branslar/pilates/"
 
 def send_whatsapp(msg):
-    phone = os.getenv("PHONE")
-    apikey = os.getenv("APIKEY")
+    phone = os.getenv("905539851216")
+    apikey = os.getenv("7654424")
 
     text = urllib.parse.quote(msg)
 
