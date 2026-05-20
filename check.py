@@ -2,11 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 import os
 import urllib.parse
+import hashlib
 
 URL = "https://www.tcf.gov.tr/branslar/pilates/"
 
 headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+    "User-Agent": "Mozilla/5.0"
 }
 
 def send_whatsapp(msg):
@@ -19,8 +20,25 @@ def send_whatsapp(msg):
     requests.get(url)
 
 r = requests.get(URL, headers=headers)
-
-print("Status:", r.status_code)
-print("Ankara var mı:", "Ankara" in r.text)
-
 soup = BeautifulSoup(r.text, "html.parser")
+
+rows = soup.find_all("tr")
+
+for row in rows:
+    text = row.get_text().strip()
+
+    if "Ankara" in text and "İncele" in text and "1. Kademe" in text:
+        
+        # benzersiz ID üret
+        course_id = hashlib.md5(text.encode()).hexdigest()
+
+        # GitHub cache gibi davran
+        if os.path.exists(course_id):
+            continue
+
+        # yeni kurs
+        send_whatsapp(f"🔥 YENİ ANKARA KURSU!\n{text}")
+
+        # kaydet
+        with open(course_id, "w") as f:
+            f.write("sent")
