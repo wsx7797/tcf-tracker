@@ -8,6 +8,9 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    env:
+      PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
+      CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
 
     steps:
       - uses: actions/checkout@v3
