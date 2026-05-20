@@ -4,7 +4,6 @@ import os
 import urllib.parse
 
 URL = "https://www.tcf.gov.tr/branslar/pilates/"
-print(r.text[:5000])
 def send_whatsapp(msg):
     phone = os.getenv(905539851216)
     apikey = os.getenv(7654424)
@@ -16,6 +15,9 @@ def send_whatsapp(msg):
 
 r = requests.get(URL)
 soup = BeautifulSoup(r.text, "html.parser")
+
+print("Ankara var mı:", "Ankara" in r.text)
+print(r.text[:2000])
 
 rows = soup.find_all("tr")
 
