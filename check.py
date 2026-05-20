@@ -7,8 +7,8 @@ import time
 URL = "https://www.tcf.gov.tr/branslar/pilates/"
 
 def send_whatsapp(msg):
-    phone = os.getenv("905539851216")
-    apikey = os.getenv("7654424")
+    phone = os.getenv(905539851216)
+    apikey = os.getenv(7654424)
 
     text = urllib.parse.quote(msg)
 
@@ -34,3 +34,6 @@ while True:
         print("Hata:", e)
 
     time.sleep(30)
+    
+    
+send_whatsapp("TEST MESAJI GELDİ 🚀")
